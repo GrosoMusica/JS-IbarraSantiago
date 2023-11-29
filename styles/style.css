@@ -18,7 +18,29 @@ body {
 }
 body.dark-mode {
     background-color: #19003b;
-    color: white;
+    color: rgb(150, 143, 143);
+}
+.dark-mode .btn-group .btn:hover {
+    background-color: rgb(150, 20, 20);
+    color: yellow;
+}
+
+h5{
+    color: blue !important;
+    font-size: 18px !important;
+    font-style: italic;
+    font-weight: lighter;
+    text-decoration: underline;
+    text-align: right;
+    
+    
+}
+
+h4{
+    font-size: 20px !important;
+    font-weight: bold;
+    text-align: center;
+
 }
 
 .form-group {
@@ -29,14 +51,17 @@ body.dark-mode {
     border: solid; 3px; 
     border-radius: 0.5rem;
     background-color: #dfccfa;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+
     margin-top: 2rem;
 }
+
 .lista .form {
     display: block;
     align-items: center;
     margin-bottom: 50px;
 }
-
+/* 
 .lista .form .form-input {
     border: 0;
     padding: 0.5rem;
@@ -45,11 +70,11 @@ body.dark-mode {
     margin-block: 0.5rem;
     border-radius: 0.5rem;
     width: 100%;
-}
+} */
 
-.lista .form .form-input:focus {
+/* .lista .form .form-input:focus {
     outline: 0;
-}
+} */
 
 .lista .form .form-submit {
     padding: 0.5rem;
@@ -64,9 +89,9 @@ body.dark-mode {
     background-color: #1b0737;
     color: white;
 }
-.lista .form-input {
+/* .lista .form-input {
     border-radius: 0.5rem;
-}
+} */
 
 .btn-group {
     display: flex;

@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>WPress-Calc</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="styles/style.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"> -->
 
-
     <script src="js/main1.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
 </head>
+
 <body>
 
-
     <h1 class="h1">Calculadora de Presupuestos</h1>
-    <h2 class="h2">Santiago D Ibarra</h2>
+    <h5 class="h2">Santiago D Ibarra</h5>
+    <h5 class="h2">3ra Entrega - JavaScript #49760</h5>
 
     <section class="px-5">
 
         <div class="btn-group px-5">
     
-            <button id="alerta" class="btn">REINICIAR DATOS</button>
+            <button id="reinicio" class="btn">REINICIAR DATOS</button>
     
-            <button id="consola" class="btn">PRESUPUESTAR</button>
+            <button id="empezar" class="btn">EMPEZAR</button>
     
             <button id="color-mode" class="btn">DARK MODE</button>
     
@@ -35,9 +40,9 @@
     
         <div class="form-group px-5">
             <ul class="lista pt-3">
-                <h4 class="pt-4">Selecciona tu categoría</h4>
+                <h4 class="pt-4">SELECCIONÁ TU CATEGORÍA</h4>
                 <form action="" id="desplegable" class="form">
-                    <select id="alerta-select" class="form-select">
+                    <select id="categoria" class="form-select">
                         <option value="Autónomo">Autónomo</option>
                         <option value="Estatales">Estatales</option>
                         <option value="Multinacional">Multinacional</option>
@@ -45,21 +50,31 @@
                         <option value="PYME">PYME</option>
                         <option value="Fundación">Fundación</option>
                     </select>
-                    <input type="submit" id="alerta-submit" class="form-submit" value="Seleccionar">
+                    <!-- <input type="submit" id="alerta-submit" class="form-submit" value="Seleccionar"> -->
                 </form>
             </ul>
-            <ul class="lista">
-                <h4>Cuántos empleados tienes</h4>
-                <form action="" id="alerta-form" class="form">
-                    <input type="text" id="alerta-input" class="form-input" maxlength="4">
-                    <input type="submit" id="alerta-submit" class="form-submit" value="Enter">
-                </form>
-            </ul>
+            <div class="d-flex">
+                <ul class="lista">
+                    <h4>INGRESÁ LA CANTIDAD DE EMPLEADOS</h4>
+                    <form action="" id="alerta-form" class="form">
+                        <input type="text" id="empleados" class="form-input" maxlength="4">
+                        <!-- <input type="submit" id="alerta-submit" class="form-submit" value="Enter"> -->
+                    </form>
+                </ul>
+                <ul class="lista">
+                    <h4>INGRESÁ LA CANTIDAD DE FACTURAS</h4>
+                    <form action="" id="alerta-form" class="form">
+                        <input type="text" id="facturas" class="form-input" maxlength="4">
+                        <!-- <input type="submit" id="alerta-submit" class="form-submit" value="Enter"> -->
+                    </form>
+                </ul>
+            </div>
+            
 
             
         <h4 class="py-5">Subtotal: <span id="subtotal">0</span></h4 class="py-5">
 
-        <button class="btn btn-secondary" id="btnPresupuesto">PRESUPUESTO</button>
+        <button class="btn btn-secondary" id="presupuesto">PRESUPUESTO</button>
 
         <p id="detalles">
 

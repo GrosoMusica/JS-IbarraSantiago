@@ -1,3 +1,95 @@
-body {
-    background-color: aquamarine;
+
+
+html, input, button {
+    font-family: "Poppins", sans-serif;
 }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-left: 40px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: aquamarine;
+    /* transition: background-color 0.3s, color 0.3s; */
+}
+body.dark-mode {
+    background-color: #19003b;
+    color: white;
+}
+
+.form-group {
+    width: 60%;
+    display: block;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border: solid; 3px; 
+    border-radius: 0.5rem;
+    background-color: #dfccfa;
+    margin-top: 2rem;
+}
+.lista .form {
+    display: block;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.lista .form .form-input {
+    border: 0;
+    padding: 0.5rem;
+    margin-bottom: 20px;
+
+    margin-block: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.lista .form .form-input:focus {
+    outline: 0;
+}
+
+.lista .form .form-submit {
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: background-color 0.1s, color 0.1s;
+    background-color: rgb(171, 171, 255)
+}
+.lista .form .form-submit:hover {
+    background-color: #1b0737;
+    color: white;
+}
+.lista .form-input {
+    border-radius: 0.5rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    width:60%;
+}
+.btn-group .btn {
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color:  rgb(171, 171, 255)
+}
+.btn-group .btn:hover {
+    background-color: black;
+    color:azure;
+}
+
+#btnPresupuesto:hover{
+    transform: scale(1.2);
+    transition: transform 0.9s;
+}
+
+

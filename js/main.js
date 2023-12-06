@@ -9,7 +9,15 @@ function reiniciarPrograma() {
     
     localStorage.clear();
 
+    nombre.value = "";
+    categoria.value = "";
+    empleados.value = "";
+    facturas.value = "";
+
     const caja = document.getElementById("caja-calc");
+
+    verResumen.style.display = "none";
+
     caja.style.display = "none";
 
     Swal.fire({
@@ -25,13 +33,22 @@ const empezar = document.getElementById("empezar");
 
 empezar.addEventListener("click", empezarPresupuesto);
 
+
 function empezarPresupuesto() {
+
+    nombre.value = "";
+    categoria.value = "";
+    empleados.value = "";
+    facturas.value = "";
     
     const caja = document.getElementById("caja-calc");
+    verResumen.style.display = "none";
 
     caja.style.display = "block";
     
 }
+
+
 
 // DARK MODE
 
@@ -89,6 +106,17 @@ empleados.addEventListener("input", () => {
     localStorage.setItem('cantidadEmpleados', cantidadEmpleados);
     calcularSubtotal();
 });
+// NOMBRE
+const nombre = document.querySelector("#nombre");
+let nombreDeclarado = localStorage.getItem('Nombre') || '';
+
+nombre.value = nombreDeclarado;
+
+nombre.addEventListener("input", () => {
+    nombreDeclarado = nombre.value;
+    localStorage.setItem('Nombre', nombreDeclarado);
+    calcularSubtotal();
+});
 
 // FACTURAS
 const facturas = document.querySelector("#facturas");
@@ -119,9 +147,34 @@ function calcularSubtotal() {
 const presupuesto = document.getElementById("presupuesto");
 presupuesto.addEventListener("click", calcularTotal);
 
+resumen = {
+    nombre: nombreDeclarado,
+    categoria: categoriaSeleccionada,
+    facturas: cantidadFacturas,
+    empleados: cantidadEmpleados,
+};
+
+// Calcular TOTAL
+
 function calcularTotal() {
     calcularBonif();
     total = subtotal * IVA * bonif;
-
     document.getElementById('total').textContent = total.toFixed(2) + " U$S";
+          
+    resumen = {
+        nombre: nombreDeclarado,
+        categoria: categoriaSeleccionada,
+        facturas: cantidadFacturas,
+        empleados: cantidadEmpleados,
+    };
+
+    const verResumen = document.getElementById("verResumen");
+    verResumen.innerHTML = 
+    '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
+    '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
+    '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
+    '<strong>Empleados:</strong> ' + resumen.empleados;
+    
+    verResumen.style.display = "block";        
 };
+

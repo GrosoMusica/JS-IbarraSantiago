@@ -48,7 +48,7 @@ h4{
     display: block;
     gap: 2rem;
     flex-wrap: wrap;
-    border: solid; 3px; 
+    border: solid 3px;
     border-radius: 0.5rem;
     background-color: #dfccfa;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);

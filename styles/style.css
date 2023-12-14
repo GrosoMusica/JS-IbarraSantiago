@@ -33,7 +33,9 @@ body.dark-mode {
 }
 
 
-
+p.presentacion {
+    width: 75%;
+}
 
 #caja-calc {
     display: none;
@@ -73,7 +75,7 @@ h3{
 }
 
 h4{
-    font-size: 20px !important;
+    font-size: 15px !important;
     font-weight: bold;
     text-align: center;
 

@@ -3,26 +3,43 @@
 const caja = document.getElementById("caja-calc");
 const cajaContacto = document.getElementById("caja-ctc");
 
+const colorModeButton = document.querySelector("#color-mode");
+const body = document.body;
+
+
+// DARK MODE
+
+const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+
+body.classList.toggle('dark-mode', isDarkMode);
+colorModeButton.innerText = isDarkMode ? 'LIGHT MODE' : 'DARK MODE';
+
+
+
+
+colorModeButton.addEventListener("click", () => {
+
+    body.classList.toggle("dark-mode");
+    colorModeButton.innerText = body.classList.contains("dark-mode") ? "LIGHT MODE" : "DARK MODE";
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
+});
+
 // btn-REINICIAR
 
-function reinicio() {
+function reinicioValues() {
         
     nombre.value = "";
     categoria.value = "";
     empleados.value = "";
     facturas.value = "";
-    
-    // verResumen.style.display = "none";
-    
 };
-
 
 document.getElementById("reinicio").addEventListener("click", () => {
     
-    reinicio();
+    reinicioValues();
     sessionStorage.clear();
     caja.style.display = "none";
-    
+
     Swal.fire({
         title: "En hora buena",
         text: "Storage ha sido borrado exitosamente",
@@ -34,18 +51,13 @@ document.getElementById("reinicio").addEventListener("click", () => {
     });
 })  ; 
 
+
 // btn-COMENZAR
 
 document.getElementById("empezar").addEventListener("click", () => {
 
-    nombre.value = "";
-    categoria.value = "";
-    empleados.value = "";
-    facturas.value = "";
-    
-    // verResumen.style.display = "none";
+    reinicioValues();
     caja.style.display = "block";
-
     cajaContacto.style.display = "none";
 });
 
@@ -60,16 +72,7 @@ document.getElementById("contacto").addEventListener("click", () => {
 
 
 
-// DARK MODE
 
-const colorModeButton = document.querySelector("#color-mode");
-const body = document.body;
-
-colorModeButton.addEventListener("click", () => {
-
-    body.classList.toggle("dark-mode");
-    colorModeButton.innerText = body.classList.contains("dark-mode") ? "LIGHT MODE" : "DARK MODE";
-});
 
 // localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
 
@@ -88,6 +91,8 @@ const Desc = 0.95;
 
 let precioFactura = 1.75;
 let subtotal;
+
+// ARRAY
 
 const catDesc = ["Estatales", "Autónomo", "Fundación"];
 const catTipoA = ["Multinacional", "Empresas"];
@@ -141,14 +146,12 @@ facturas.addEventListener("input", () => {
     calcularSubtotal();
     });
 
+
 function calcularBonif() {
-    if (catDesc.includes(categoriaSeleccionada)) {
-    bonif = 1 * Desc
-    } else if (catTipoA.includes(categoriaSeleccionada)) {
-    bonif = 1 * TIPO_A;
-        } else {
-    bonif = 1
-    }};
+    bonif = catDesc.includes(categoriaSeleccionada) ? 1 * Desc :
+            catTipoA.includes(categoriaSeleccionada) ? 1 * TIPO_A :
+            1;
+}
 
 function calcularSubtotal() {
     subtotal = precioFactura * cantidadEmpleados * cantidadFacturas;

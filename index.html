@@ -3,34 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>WPress-Calc</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    
     <link rel="stylesheet" href="styles/style.css">
+
     <script src="js/main.js" defer></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+    <script src="https://kit.fontawesome.com/799aee9cd6.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <h1 class="h1">Calculadora de Presupuestos</h1>
+    <h1 class="h1">Integración de JavaScript</h1>
     <h5 class="h2">Santiago D Ibarra</h5>
     <h5 class="h2">3ra Entrega - JavaScript #49760</h5>
-    
-    <section class="px-5">
+
+    <!-- // NAV  -->
+
+    <nav class="px-5">
         <div class="btn-group px-5">
             <button id="reinicio" class="btn">REINICIAR DATOS</button>
-            <button id="empezar" class="btn">EMPEZAR</button>
+            <button id="empezar" class="btn">COTIZAR</button>
             <button id="color-mode" class="btn">DARK MODE</button>
+            <button id="contacto" class="btn">CONTACTO</button>
         </div>
-    </section>
+    </nav>
+
+    <!-- // CAJA PRESUPUESTOS  -->
+
     <section class="px-5">
         <div id="caja-calc" class="form-group px-5" >
-            <ul>
+            <div>
                 <h4>INGRESÁ TU NOMBRE</h4>
-                    <form action="" id="alerta-form" class="form">
-                        <input type="text" id="nombre" class="form-input">
+                    <form action="" class="form">
+                        <input type="text" id="nombre" class="form-control" placeholder="Ingresá tu nombre">
                     </form>
-            </ul>
-            <ul class="lista pt-3">
+            </div>
+            <div class="lista pt-3">
                 <h4 class="pt-4">SELECCIONÁ TU CATEGORÍA</h4>
                 <form action="" id="desplegable" class="form">
                     <select id="categoria" class="form-select">
@@ -42,20 +57,20 @@
                         <option value="Fundación">Fundación</option>
                     </select>
                 </form>
-            </ul>
+            </div>
             <div class="d-flex">
-                <ul class="lista">
+                <div class="lista">
                     <h4>INGRESÁ LA CANTIDAD DE EMPLEADOS</h4>
-                    <form action="" id="alerta-form" class="form">
-                        <input type="text" id="empleados" class="form-input" maxlength="4">
+                    <form action="" class="form">
+                        <input type="number" id="empleados" class="form-control" min="1">
                     </form>
-                </ul>
-                <ul class="lista">
+                </div>
+                <div class="lista">
                     <h4>INGRESÁ LA CANTIDAD DE FACTURAS</h4>
-                    <form action="" id="alerta-form" class="form">
-                        <input type="text" id="facturas" class="form-input" maxlength="4">
+                    <form action="" class="form">
+                        <input type="number" id="facturas" class="form-control" min="1">
                     </form>
-                </ul>
+                </div>
             </div>
             <h4 class="py-5">Subtotal: <span id="subtotal">0</span></h4 class="py-5">
             <button class="btn btn-secondary" id="presupuesto">PRESUPUESTO</button>
@@ -66,6 +81,43 @@
 
             </div>
         </div>
+
+        <!-- // CONTACTO  -->
+
+        <div id="caja-ctc" class="form-group">
+            <div class="py-5">
+
+                <h4>BIENVENIDO A ESTUDIO GM</h4>
+                <h5>Aplicaciones JavaScript para Wordpress</h5>
+                <p>¿Tienes una pregunta? ¿Una idea brillante que estás ansioso por compartir? O tal vez solo quieres charlar sobre tus proyectos web. Estoy aquí para eso. ¡No dudes en lanzarme un mensaje y hablemos de cómo hacer magia en internet!</p>
+
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="nombre-ctc" placeholder="Tu nombre">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="mensaje"rows="4" placeholder="Escribe tu mensaje aquí"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Enviar Consulta</button>
+                </form>
+
+
+
+                <div class="d-flex justify-content-evenly py-5 ">
+
+                    <a href="https://www.instagram.com/grosomusica" target="_blank"><i class="fa-brands fa-instagram"></i></a>    
+                    <a href="https://www.linkedin.com/in/grosomusica" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/GrosoMusica" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.behance.net/grosomusica" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-behance"></i></a>
+                    <a href="https://wa.me/+541135743407" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+
     </section>
 </body>
 </html>

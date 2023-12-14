@@ -1,52 +1,62 @@
 
-// REINICIAR
 
-const reinicio = document.getElementById("reinicio");
+const caja = document.getElementById("caja-calc");
+const cajaContacto = document.getElementById("caja-ctc");
 
-reinicio.addEventListener("click", reiniciarPrograma);
+// btn-REINICIAR
 
-function reiniciarPrograma() {
-    
-    localStorage.clear();
-
+function reinicio() {
+        
     nombre.value = "";
     categoria.value = "";
     empleados.value = "";
     facturas.value = "";
+    
+    // verResumen.style.display = "none";
+    
+};
 
-    const caja = document.getElementById("caja-calc");
 
-    verResumen.style.display = "none";
-
+document.getElementById("reinicio").addEventListener("click", () => {
+    
+    reinicio();
+    sessionStorage.clear();
     caja.style.display = "none";
-
+    
     Swal.fire({
         title: "En hora buena",
         text: "Storage ha sido borrado exitosamente",
+        imageUrl: "img/desert.jpg",
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'vacío',
         icon: "success"
     });
-}
+})  ; 
 
-// COMENZAR
+// btn-COMENZAR
 
-const empezar = document.getElementById("empezar");
-
-empezar.addEventListener("click", empezarPresupuesto);
-
-
-function empezarPresupuesto() {
+document.getElementById("empezar").addEventListener("click", () => {
 
     nombre.value = "";
     categoria.value = "";
     empleados.value = "";
     facturas.value = "";
     
-    const caja = document.getElementById("caja-calc");
-    verResumen.style.display = "none";
-
+    // verResumen.style.display = "none";
     caja.style.display = "block";
-    
-}
+
+    cajaContacto.style.display = "none";
+});
+
+
+// btn-CONTACTO
+
+document.getElementById("contacto").addEventListener("click", () => {
+
+    cajaContacto.style.display = "block";
+    caja.style.display = "none";
+});
 
 
 
@@ -55,16 +65,15 @@ function empezarPresupuesto() {
 const colorModeButton = document.querySelector("#color-mode");
 const body = document.body;
 
-colorModeButton.addEventListener("click", cambiarModoColor);
+colorModeButton.addEventListener("click", () => {
 
-function cambiarModoColor() {
     body.classList.toggle("dark-mode");
-    if (body.classList.contains("dark-mode")) {
-        colorModeButton.innerText = "LIGHT MODE";
-    } else {
-        colorModeButton.innerText = "DARK MODE";
-    }
-}
+    colorModeButton.innerText = body.classList.contains("dark-mode") ? "LIGHT MODE" : "DARK MODE";
+});
+
+// localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
+
+
 
 // --- --- --- --- VARIABLES --- --- --- --- //
 
@@ -84,28 +93,30 @@ const catDesc = ["Estatales", "Autónomo", "Fundación"];
 const catTipoA = ["Multinacional", "Empresas"];
 
 // SELECCIONAR CATEGORIA
+
 const categoria = document.querySelector("#categoria");
-let categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada') || '';
+let categoriaSeleccionada = sessionStorage.getItem('categoriaSeleccionada') || '';
 
 categoria.value = categoriaSeleccionada;
 
 categoria.addEventListener("change", () => {
     categoriaSeleccionada = categoria.value;
-    localStorage.setItem('categoriaSeleccionada', categoriaSeleccionada);
+    sessionStorage.setItem('categoriaSeleccionada', categoriaSeleccionada);
     calcularSubtotal();
 });
 
 // EMPLEADOS
 const empleados = document.querySelector("#empleados");
-let cantidadEmpleados = localStorage.getItem('cantidadEmpleados') || '';
+let cantidadEmpleados = sessionStorage.getItem('cantidadEmpleados') || '';
 
 empleados.value = cantidadEmpleados;
 
 empleados.addEventListener("input", () => {
     cantidadEmpleados = empleados.value;
-    localStorage.setItem('cantidadEmpleados', cantidadEmpleados);
+    sessionStorage.setItem('cantidadEmpleados', cantidadEmpleados);
     calcularSubtotal();
 });
+
 // NOMBRE
 const nombre = document.querySelector("#nombre");
 let nombreDeclarado = localStorage.getItem('Nombre') || '';
@@ -114,19 +125,19 @@ nombre.value = nombreDeclarado;
 
 nombre.addEventListener("input", () => {
     nombreDeclarado = nombre.value;
-    localStorage.setItem('Nombre', nombreDeclarado);
+    sessionStorage.setItem('Nombre', nombreDeclarado);
     calcularSubtotal();
 });
 
 // FACTURAS
 const facturas = document.querySelector("#facturas");
-let cantidadFacturas = localStorage.getItem('cantidadFacturas') || '';
+let cantidadFacturas = sessionStorage.getItem('cantidadFacturas') || '';
 
 facturas.value = cantidadFacturas;
 
 facturas.addEventListener("input", () => {
     cantidadFacturas = facturas.value;
-    localStorage.setItem('cantidadFacturas', cantidadFacturas);
+    sessionStorage.setItem('cantidadFacturas', cantidadFacturas);
     calcularSubtotal();
     });
 
@@ -144,23 +155,12 @@ function calcularSubtotal() {
     document.getElementById('subtotal').textContent = subtotal + " U$S";
 }
 
-const presupuesto = document.getElementById("presupuesto");
-presupuesto.addEventListener("click", calcularTotal);
+document.getElementById("presupuesto").addEventListener("click", () => {
 
-resumen = {
-    nombre: nombreDeclarado,
-    categoria: categoriaSeleccionada,
-    facturas: cantidadFacturas,
-    empleados: cantidadEmpleados,
-};
-
-// Calcular TOTAL
-
-function calcularTotal() {
     calcularBonif();
     total = subtotal * IVA * bonif;
     document.getElementById('total').textContent = total.toFixed(2) + " U$S";
-          
+    
     resumen = {
         nombre: nombreDeclarado,
         categoria: categoriaSeleccionada,
@@ -169,12 +169,14 @@ function calcularTotal() {
     };
 
     const verResumen = document.getElementById("verResumen");
+
     verResumen.innerHTML = 
+
     '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
     '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
     '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
     '<strong>Empleados:</strong> ' + resumen.empleados;
     
     verResumen.style.display = "block";        
-};
+});
 

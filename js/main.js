@@ -143,10 +143,12 @@ GET("presupuesto").addEventListener("click", () => {
     verResumen.style.display = "block"; 
     caja.style.display = "none";
     
-
+    
     calcularBonif();
     total = subtotal * IVA * bonif;
     GET('total').textContent = total.toFixed(2) + " U$S";
+    SAVE('total', total.toFixed(2));
+
     
     resumen = {
         nombre: nombreDeclarado,
@@ -157,25 +159,45 @@ GET("presupuesto").addEventListener("click", () => {
     
     verResumen.innerHTML = 
     '<div class="container mt-4">' +
-        '<article class="card mb-4">' +
-            '<img src="img/factura.jpg" class="card-img-top" alt="Cabecera de la factura">' +
+    '<article class="card mb-4">' +
+    '<img src="img/factura.jpg" class="card-img-top" alt="Cabecera de la factura">' +
             '<div class="card-body">' +
-                '<strong>DETALLES DE FACTURACIÓN:</strong><br>' +
-                '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
-                '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
-                '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
-                '<strong>Empleados:</strong> ' + resumen.empleados +
+            '<strong>DETALLES DE FACTURACIÓN:</strong><br>' +
+            '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
+            '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
+            '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
+            '<strong>Empleados:</strong> ' + resumen.empleados +
             '</div>' +
             '<h4 class="py-5">Total: <span id="totalResumen">' + total.toFixed(2) + ' U$S</span></h4>' +
-        '</article>' +
+            '</article>' +
     '</div>';
     
     Swal.fire({
         title: "El costo es de " + total.toFixed(2) + "U$S",
         text: "Gracias " + nombreDeclarado + " dale OK para ver detalles",
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'cotización',
         icon: "success",
     });
 });
+
+// --- --- --- // btn Enviar Consulta
+
+GET("enviarConsulta").addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    Swal.fire({
+        title: "Gracias por comunicarte",
+        text: "Tu mensaje fue enviado correctamente",
+        imageUrl: 'img/desert.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Mensaje de despedida',
+        icon: "info",
+    });
+});
+
+
+
+
+
+

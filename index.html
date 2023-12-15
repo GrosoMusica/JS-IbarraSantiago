@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/799aee9cd6.js" crossorigin="anonymous"></script>
     <script src="js/shorts.js" defer></script>
     <script src="js/main.js" defer></script>    
+    <script src="js/conv.js" defer></script>
 </head>
 
 <body>
@@ -86,6 +87,17 @@
             </div>
         </article>
 
+        <!-- // BITCON API  -->
+
+        <article class="form-group my-4" id="verBTCPrice">
+            <div>
+                <p class=" card-body pt-5">
+                    Aqui veras el valor en BTC 
+                </p>
+                <h4 class="py-5">Precio actual es de : <span id="BTC">0</span></h4   >
+            </div>
+        </article>
+
         <!-- // CONTACTO  -->
 
         <div id="caja-ctc" class="form-group">
@@ -99,9 +111,9 @@
                         <input type="text" class="form-control" id="nombre-ctc" placeholder="Tu nombre">
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control" id="mensaje"rows="4" placeholder="Escribe tu mensaje aquí"></textarea>
+                        <textarea class="form-control" rows="4" placeholder="Escribe tu mensaje aquí"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-secondary">Enviar Consulta</button>
+                    <button id="enviarConsulta" class="btn btn-secondary">Enviar Consulta</button>
                 </form>
 
                 <div class="d-flex justify-content-evenly py-5 ">

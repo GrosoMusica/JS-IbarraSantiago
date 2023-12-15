@@ -1,21 +1,101 @@
 
+// *** Declaración de Objetos y variables
 
-const caja = document.getElementById("caja-calc");
-const cajaContacto = document.getElementById("caja-ctc");
+// OBJETO resumen
+let resumen = {
+        nombre: '',
+        categoria: '',
+        facturas: 0,
+        empleados: 0
+};
 
-const colorModeButton = document.querySelector("#color-mode");
-const body = document.body;
+// IMPUESTOS y CARGOS
+const IVA = 1.21;
+const TIPO_A = 1.33;
+const Desc = 0.95;
+const precioFactura = 1.75;
 
+let bonif;
+let subtotal;
+
+// ARRAY Categorías y Tipos
+const catDesc = ["Estatales", "Autónomo", "Fundación"];
+const catTipoA = ["Multinacional", "Empresas"];
+
+
+// *** Entradas del Usuario
+
+// NOMBRE
+let nombre = GET("nombre");
+let nombreDeclarado = nombre.value;
+
+nombre.addEventListener("input", () => {
+    nombreDeclarado = nombre.value;
+    calcularSubtotal();
+});
+
+// SELECCIONAR CATEGORIA
+let categoria = GET("categoria");
+let categoriaSeleccionada = categoria.value;
+
+categoria.addEventListener("change", () => {
+    categoriaSeleccionada = categoria.value;
+    calcularSubtotal();
+});
+
+// EMPLEADOS
+let empleados = GET("empleados");
+let cantidadEmpleados = empleados.value;
+
+empleados.addEventListener("input", () => {
+    cantidadEmpleados = empleados.value;
+    calcularSubtotal();
+});
+
+// FACTURAS
+let facturas = GET("facturas");
+let cantidadFacturas = facturas.value;
+
+facturas.addEventListener("input", () => {
+    cantidadFacturas = facturas.value;
+    calcularSubtotal();
+});
+
+// *** FUNCIONES
+
+function calcularBonif() {
+    bonif = catDesc.includes(categoriaSeleccionada) ? 1 * Desc :
+    catTipoA.includes(categoriaSeleccionada) ? 1 * TIPO_A :
+    1;
+}
+
+function calcularSubtotal() {
+    subtotal = precioFactura * cantidadEmpleados * cantidadFacturas;
+    GET('subtotal').textContent = subtotal + " U$S";
+}
+
+function reinicioValues() {   
+    nombreDeclarado = nombre.value;
+    nombre.value = "";
+    categoria.value = "";
+    empleados.value = "";
+    facturas.value = "";
+};
+
+// *** Eventos y DOM
+
+const caja = GET("caja-calc");
+const cajaContacto = GET("caja-ctc");
 
 // DARK MODE
 
 const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+const colorModeButton = SEL("#color-mode");
+const body = document.body;
 
 body.classList.toggle('dark-mode', isDarkMode);
+
 colorModeButton.innerText = isDarkMode ? 'LIGHT MODE' : 'DARK MODE';
-
-
-
 
 colorModeButton.addEventListener("click", () => {
 
@@ -24,145 +104,49 @@ colorModeButton.addEventListener("click", () => {
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
 });
 
-// btn-REINICIAR
 
-function reinicioValues() {
-        
-    nombre.value = "";
-    categoria.value = "";
-    empleados.value = "";
-    facturas.value = "";
-};
+// --- --- --- // btn-REINICIAR
 
-document.getElementById("reinicio").addEventListener("click", () => {
+GET("reinicio").addEventListener("click", () => {
     
     reinicioValues();
-    sessionStorage.clear();
     caja.style.display = "none";
-
-    Swal.fire({
-        title: "En hora buena",
-        text: "Storage ha sido borrado exitosamente",
-        imageUrl: "img/desert.jpg",
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'vacío',
-        icon: "success"
-    });
-})  ; 
+    verResumen.style.display = "none";        
+}); 
 
 
-// btn-COMENZAR
+// --- --- --- // btn-COTIZAR   
 
-document.getElementById("empezar").addEventListener("click", () => {
-
+GET("cotizar").addEventListener("click", () => {
+    
     reinicioValues();
     caja.style.display = "block";
     cajaContacto.style.display = "none";
+    verResumen.style.display = "none";        
 });
 
 
-// btn-CONTACTO
+// --- --- --- // btn-CONTACTO
 
-document.getElementById("contacto").addEventListener("click", () => {
-
+GET("contacto").addEventListener("click", () => {
+    
     cajaContacto.style.display = "block";
     caja.style.display = "none";
+    verResumen.style.display = "none";        
 });
+    
+// --- --- --- // btn PRESUPUESTO
 
-
-
-
-
-// localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
-
-
-
-// --- --- --- --- VARIABLES --- --- --- --- //
-
-
-// IMPUESTOS
-
-const IVA = 1.21;
-const TIPO_A = 1.33;
-const Desc = 0.95;
-
-// ENTRADAS
-
-let precioFactura = 1.75;
-let subtotal;
-
-// ARRAY
-
-const catDesc = ["Estatales", "Autónomo", "Fundación"];
-const catTipoA = ["Multinacional", "Empresas"];
-
-// SELECCIONAR CATEGORIA
-
-const categoria = document.querySelector("#categoria");
-let categoriaSeleccionada = sessionStorage.getItem('categoriaSeleccionada') || '';
-
-categoria.value = categoriaSeleccionada;
-
-categoria.addEventListener("change", () => {
-    categoriaSeleccionada = categoria.value;
-    sessionStorage.setItem('categoriaSeleccionada', categoriaSeleccionada);
-    calcularSubtotal();
-});
-
-// EMPLEADOS
-const empleados = document.querySelector("#empleados");
-let cantidadEmpleados = sessionStorage.getItem('cantidadEmpleados') || '';
-
-empleados.value = cantidadEmpleados;
-
-empleados.addEventListener("input", () => {
-    cantidadEmpleados = empleados.value;
-    sessionStorage.setItem('cantidadEmpleados', cantidadEmpleados);
-    calcularSubtotal();
-});
-
-// NOMBRE
-const nombre = document.querySelector("#nombre");
-let nombreDeclarado = localStorage.getItem('Nombre') || '';
-
-nombre.value = nombreDeclarado;
-
-nombre.addEventListener("input", () => {
-    nombreDeclarado = nombre.value;
-    sessionStorage.setItem('Nombre', nombreDeclarado);
-    calcularSubtotal();
-});
-
-// FACTURAS
-const facturas = document.querySelector("#facturas");
-let cantidadFacturas = sessionStorage.getItem('cantidadFacturas') || '';
-
-facturas.value = cantidadFacturas;
-
-facturas.addEventListener("input", () => {
-    cantidadFacturas = facturas.value;
-    sessionStorage.setItem('cantidadFacturas', cantidadFacturas);
-    calcularSubtotal();
-    });
-
-
-function calcularBonif() {
-    bonif = catDesc.includes(categoriaSeleccionada) ? 1 * Desc :
-            catTipoA.includes(categoriaSeleccionada) ? 1 * TIPO_A :
-            1;
-}
-
-function calcularSubtotal() {
-    subtotal = precioFactura * cantidadEmpleados * cantidadFacturas;
-    document.getElementById('subtotal').textContent = subtotal + " U$S";
-}
-
-document.getElementById("presupuesto").addEventListener("click", () => {
+GET("presupuesto").addEventListener("click", () => {
+    
+    let verResumen = GET("verResumen");
+    verResumen.style.display = "block"; 
+    caja.style.display = "none";
+    
 
     calcularBonif();
     total = subtotal * IVA * bonif;
-    document.getElementById('total').textContent = total.toFixed(2) + " U$S";
+    GET('total').textContent = total.toFixed(2) + " U$S";
     
     resumen = {
         nombre: nombreDeclarado,
@@ -170,16 +154,28 @@ document.getElementById("presupuesto").addEventListener("click", () => {
         facturas: cantidadFacturas,
         empleados: cantidadEmpleados,
     };
-
-    const verResumen = document.getElementById("verResumen");
-
-    verResumen.innerHTML = 
-
-    '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
-    '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
-    '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
-    '<strong>Empleados:</strong> ' + resumen.empleados;
     
-    verResumen.style.display = "block";        
+    verResumen.innerHTML = 
+    '<div class="container mt-4">' +
+        '<article class="card mb-4">' +
+            '<img src="img/factura.jpg" class="card-img-top" alt="Cabecera de la factura">' +
+            '<div class="card-body">' +
+                '<strong>DETALLES DE FACTURACIÓN:</strong><br>' +
+                '<strong>Nombre:</strong> ' + resumen.nombre + '<br>' +
+                '<strong>Categoría:</strong> ' + resumen.categoria + '<br>' +
+                '<strong>Facturas:</strong> ' + resumen.facturas + '<br>' +
+                '<strong>Empleados:</strong> ' + resumen.empleados +
+            '</div>' +
+            '<h4 class="py-5">Total: <span id="totalResumen">' + total.toFixed(2) + ' U$S</span></h4>' +
+        '</article>' +
+    '</div>';
+    
+    Swal.fire({
+        title: "El costo es de " + total.toFixed(2) + "U$S",
+        text: "Gracias " + nombreDeclarado + " dale OK para ver detalles",
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'cotización',
+        icon: "success",
+    });
 });
-

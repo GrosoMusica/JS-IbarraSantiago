@@ -87,6 +87,7 @@ function reinicioValues() {
 const caja = GET("caja-calc");
 const cajaContacto = GET("caja-ctc");
 const contador = GET("contador");
+const marq = GET("marquesina");
 
 // DARK MODE
 
@@ -105,20 +106,18 @@ colorModeButton.addEventListener("click", () => {
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
 });
 
-
 // --- --- --- // btn-REINICIAR
 GET("reinicio").addEventListener("click", () => {
-    
     reinicioValues();
     caja.style.display = "none";
+    cajaContacto.style.display ="none";
     contador.style.display = "none";
+    marq.style.display = "none";
     verResumen.style.display = "none"; 
 }); 
 
-
 // --- --- --- // btn-COTIZAR   
 GET("cotizar").addEventListener("click", () => {
-    
     reinicioValues();
     caja.style.display = "block";
     contador.style.display = "none";
@@ -126,19 +125,15 @@ GET("cotizar").addEventListener("click", () => {
     verResumen.style.display = "none";        
 });
 
-
 // --- --- --- // btn-CONTACTO
 GET("contacto").addEventListener("click", () => {
-    
     caja.style.display = "none";
     contador.style.display = "none";
     cajaContacto.style.display = "block";
     verResumen.style.display = "none";    
-    
 });
-    
-// --- --- --- // btn-CONTADOR
 
+// --- --- --- // btn-CONTADOR
 document.addEventListener('DOMContentLoaded', () => {
     GET("Contador").addEventListener("click", () => {
         caja.style.display = "none";
@@ -149,20 +144,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    
 // --- --- --- // btn PRESUPUESTO
 GET("presupuesto").addEventListener("click", () => {
     
     let verResumen = GET("verResumen");
     verResumen.style.display = "block"; 
     caja.style.display = "none";
-    
+    marq.style.display = "block";
+
     
     calcularBonif();
     total = subtotal * IVA * bonif;
     GET('total').textContent = total.toFixed(2) + " U$S";
     SAVE('total', total.toFixed(2));
-
     
     resumen = {
         nombre: nombreDeclarado,
@@ -194,9 +188,7 @@ GET("presupuesto").addEventListener("click", () => {
 });
 
 // --- --- --- // btn Enviar Consulta
-
 GET("enviarConsulta").addEventListener("click", (e) => {
-
     e.preventDefault();
 
     Swal.fire({
@@ -208,6 +200,7 @@ GET("enviarConsulta").addEventListener("click", (e) => {
         imageAlt: 'Mensaje de despedida',
         icon: "info",
     });
+
 });
 
 

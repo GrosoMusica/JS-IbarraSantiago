@@ -145,7 +145,13 @@ a:hover {
 }
 
 @media screen and (min-width: 980px) {
-    .container {
+
+    body
+    .container
+    .form-group {
         max-width: 100%;
     }
-}
+    nav .px-5 {
+        width: 100%;
+    }}
+    

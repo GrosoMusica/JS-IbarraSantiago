@@ -86,6 +86,7 @@ function reinicioValues() {
 
 const caja = GET("caja-calc");
 const cajaContacto = GET("caja-ctc");
+const contador = GET("contador");
 
 // DARK MODE
 
@@ -95,48 +96,61 @@ const body = document.body;
 
 body.classList.toggle('dark-mode', isDarkMode);
 
-colorModeButton.innerText = isDarkMode ? 'LIGHT MODE' : 'DARK MODE';
+colorModeButton.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 
 colorModeButton.addEventListener("click", () => {
 
     body.classList.toggle("dark-mode");
-    colorModeButton.innerText = body.classList.contains("dark-mode") ? "LIGHT MODE" : "DARK MODE";
+    colorModeButton.innerHTML = body.classList.contains("dark-mode") ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
 });
 
 
 // --- --- --- // btn-REINICIAR
-
 GET("reinicio").addEventListener("click", () => {
     
     reinicioValues();
     caja.style.display = "none";
-    verResumen.style.display = "none";        
+    contador.style.display = "none";
+    verResumen.style.display = "none"; 
 }); 
 
 
 // --- --- --- // btn-COTIZAR   
-
 GET("cotizar").addEventListener("click", () => {
     
     reinicioValues();
     caja.style.display = "block";
+    contador.style.display = "none";
     cajaContacto.style.display = "none";
     verResumen.style.display = "none";        
 });
 
 
 // --- --- --- // btn-CONTACTO
-
 GET("contacto").addEventListener("click", () => {
     
-    cajaContacto.style.display = "block";
     caja.style.display = "none";
-    verResumen.style.display = "none";        
+    contador.style.display = "none";
+    cajaContacto.style.display = "block";
+    verResumen.style.display = "none";    
+    
 });
     
-// --- --- --- // btn PRESUPUESTO
+// --- --- --- // btn-CONTADOR
 
+document.addEventListener('DOMContentLoaded', () => {
+    GET("Contador").addEventListener("click", () => {
+        caja.style.display = "none";
+        contador.style.display = "flex";
+        cajaContacto.style.display = "none";
+        verResumen.style.display = "none";     
+        iniciarContador();
+    });
+});
+
+    
+// --- --- --- // btn PRESUPUESTO
 GET("presupuesto").addEventListener("click", () => {
     
     let verResumen = GET("verResumen");

@@ -1,13 +1,11 @@
 
 // API Consulta el valor de BTC en CoinRanking
 
-
 document.addEventListener('DOMContentLoaded', function () {
     
     let precioBTC;
 
     const url = 'https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/price?referenceCurrencyUuid=yhjMzLPhuIDl';
-
 
     fetch(url, {
         method: 'GET',
@@ -23,10 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             precioBTC = data.data.price;
             GET("BTC").textContent = precioBTC;
-
-            
-            
-
         })
 
         .catch((err) => {
@@ -36,11 +30,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: "error"
         });
     });
-
-    // SAVE("BTC", FixedPrecioBTC.toFixed(2));
-    let FixedPrecioBTC = precioBTC.toFixed(2);
-    V(FixedPrecioBTC);
 });
-
-
 

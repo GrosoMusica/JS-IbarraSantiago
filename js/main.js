@@ -87,7 +87,6 @@ function reinicioValues() {
 const caja = GET("caja-calc");
 const cajaContacto = GET("caja-ctc");
 const contador = GET("contador");
-const marq = GET("marquesina");
 
 // DARK MODE
 
@@ -112,7 +111,6 @@ GET("reinicio").addEventListener("click", () => {
     caja.style.display = "none";
     cajaContacto.style.display ="none";
     contador.style.display = "none";
-    marq.style.display = "none";
     verResumen.style.display = "none"; 
 }); 
 
@@ -150,8 +148,6 @@ GET("presupuesto").addEventListener("click", () => {
     let verResumen = GET("verResumen");
     verResumen.style.display = "block"; 
     caja.style.display = "none";
-    marq.style.display = "block";
-
     
     calcularBonif();
     total = subtotal * IVA * bonif;

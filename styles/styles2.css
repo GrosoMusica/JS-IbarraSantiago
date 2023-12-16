@@ -144,11 +144,6 @@ a:hover {
     font-family: 'Arial', sans-serif;
 }
 
-marquee {
-    display: none;
-}
-
-
 @media screen and (min-width: 980px) {
     .container {
         max-width: 100%;

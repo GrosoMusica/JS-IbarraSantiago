@@ -112,6 +112,9 @@ GET("reinicio").addEventListener("click", () => {
     cajaContacto.style.display ="none";
     contador.style.display = "none";
     verResumen.style.display = "none"; 
+    sessionStorage.clear();
+
+
 }); 
 
 // --- --- --- // btn-COTIZAR   

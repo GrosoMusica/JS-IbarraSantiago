@@ -31,6 +31,7 @@ let nombreDeclarado = nombre.value;
 
 nombre.addEventListener("input", () => {
     nombreDeclarado = nombre.value;
+    SAVE("nombreDeclarado", nombreDeclarado);
     calcularSubtotal();
 });
 
@@ -40,6 +41,7 @@ let categoriaSeleccionada = categoria.value;
 
 categoria.addEventListener("change", () => {
     categoriaSeleccionada = categoria.value;
+    SAVE("categoriaSeleccionada", categoriaSeleccionada);
     calcularSubtotal();
 });
 

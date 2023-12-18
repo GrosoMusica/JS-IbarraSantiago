@@ -109,6 +109,7 @@ colorModeButton.addEventListener("click", () => {
 
 // --- --- --- // btn-REINICIAR
 GET("reinicio").addEventListener("click", () => {
+    location.reload();
     reinicioValues();
     caja.style.display = "none";
     cajaContacto.style.display ="none";

@@ -44,7 +44,7 @@ const selectCategoria = GET('categoria');
 
 let categoriaSeleccionada = "";
 
-function manejarOpciones(opciones) {
+function opcionesCategorias(opciones) {
     selectCategoria.addEventListener("change", () => {
         categoriaSeleccionada = selectCategoria.value;
         calcularBonif();
@@ -63,7 +63,7 @@ fetch('js/categorias.json')
         return response.json();
     })
     .then(opciones => {
-        manejarOpciones(opciones);
+        opcionesCategorias(opciones);
     })
     .catch(error => {
         Swal.fire({
@@ -164,6 +164,34 @@ GET("contacto").addEventListener("click", () => {
     cajaContacto.style.display = "block";
     verResumen.style.display = "none";    
 });
+
+fetch('js/servicios.json')
+    .then(response => {
+        return response.json();
+    })
+    .then(servicios => {
+
+        const selectServicios = GET('servicios');
+        
+        servicios.forEach(servicio => {
+            const servicioElement = document.createElement('option');
+            servicioElement.textContent = servicio;
+            selectServicios.appendChild(servicioElement);
+    })
+    })
+    .catch(error => {
+        Swal.fire({
+            title: "OJO",
+            text: "imposible leer desde json",
+            icon: "error",
+        });
+    });
+
+
+
+
+
+
 
 // --- --- --- // btn-CONTADOR
 document.addEventListener('DOMContentLoaded', () => {

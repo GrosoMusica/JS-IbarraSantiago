@@ -26,7 +26,7 @@ const iniciarContador = () => {
             mostrarBienvenido();
         }
 
-    }, 1000); // Cambiado a 1000 ms (1 segundo)
+    }, 1000);
 };
 
 // --- --- MARQUESINA

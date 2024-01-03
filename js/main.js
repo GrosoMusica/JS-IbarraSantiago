@@ -19,6 +19,10 @@ let bonif;
 let subtotal;
 
 // ARRAY Categorías y Tipos
+
+
+
+
 const catDesc = ["Estatales", "Autónomo", "Fundación"];
 const catTipoA = ["Multinacional", "Empresas"];
 
@@ -35,15 +39,46 @@ nombre.addEventListener("input", () => {
     calcularSubtotal();
 });
 
-// SELECCIONAR CATEGORIA
-let categoria = GET("categoria");
-let categoriaSeleccionada = categoria.value;
 
-categoria.addEventListener("change", () => {
-    categoriaSeleccionada = categoria.value;
-    SAVE("categoriaSeleccionada", categoriaSeleccionada);
-    calcularSubtotal();
-});
+// CATEGORIA 
+
+const selectCategoria = GET('categoria');
+
+let categoriaSeleccionada = "";
+
+function manejarOpciones(opciones) {
+    selectCategoria.addEventListener("change", () => {
+        categoriaSeleccionada = selectCategoria.value;
+        calcularBonif();
+    });
+
+    opciones.forEach(opcion => {
+        const optionElement = document.createElement('option');
+        optionElement.value = opcion;
+        optionElement.textContent = opcion;
+        selectCategoria.appendChild(optionElement);
+    });
+}
+
+fetch('js/categorias.json')
+    .then(response => {
+        return response.json();
+    })
+    .then(opciones => {
+        manejarOpciones(opciones);
+    })
+    .catch(error => {
+        console.error('Error en la solicitud Fetch:', error);
+    });
+
+
+
+
+
+
+
+
+
 
 // EMPLEADOS
 let empleados = GET("empleados");
@@ -122,6 +157,7 @@ GET("reinicio").addEventListener("click", () => {
 
 // --- --- --- // btn-COTIZAR   
 GET("cotizar").addEventListener("click", () => {
+    location.reload();
     reinicioValues();
     caja.style.display = "block";
     contador.style.display = "none";

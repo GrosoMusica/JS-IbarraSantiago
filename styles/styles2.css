@@ -132,6 +132,10 @@ a:hover {
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
+#contador {
+    display: none;
+}
+
 .counter {
     display: flex;
     align-items: center;

@@ -20,11 +20,9 @@ let subtotal;
 
 // ARRAY Categorías y Tipos
 
-
-
-
 const catDesc = ["Estatales", "Autónomo", "Fundación"];
 const catTipoA = ["Multinacional", "Empresas"];
+
 
 
 // *** Entradas del Usuario
@@ -68,16 +66,12 @@ fetch('js/categorias.json')
         manejarOpciones(opciones);
     })
     .catch(error => {
-        console.error('Error en la solicitud Fetch:', error);
+        Swal.fire({
+            title: "OJO",
+            text: "imposible leer desde json",
+            icon: "error",
+        });
     });
-
-
-
-
-
-
-
-
 
 
 // EMPLEADOS
@@ -151,8 +145,6 @@ GET("reinicio").addEventListener("click", () => {
     contador.style.display = "none";
     verResumen.style.display = "none"; 
     sessionStorage.clear();
-
-
 }); 
 
 // --- --- --- // btn-COTIZAR   
